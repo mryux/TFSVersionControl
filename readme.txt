@@ -6,4 +6,8 @@
 5: start fitnesse with following command:
 	java -cp Plugins/Tfs.jar -jar fitnesse-standalone.jar -p 8280 -e 0
 
+	
+known issue:
+1: page rename is done with page delete and new page add, so page history would be lost.
+
 enjoy!
