@@ -99,17 +99,17 @@ public class TFSVersionsController implements VersionsController
 	@Override
 	public VersionInfo makeVersion(FileVersion... fileVersions) throws IOException
 	{
-		//String lText = String.format( "makeVersion files: \n %s", getFileNames( fileVersions ) );
-		//LOG.log( Level.INFO, lText );
-
 		for (FileVersion fileVersion : fileVersions)
 		{
 			File lFile = fileVersion.getFile();
-		
+
 			addDirectory( lFile.getParentFile() );
 			
-			boolean lIsNew = !fileSystem.exists( lFile );			
+			boolean lIsNew = !fileSystem.exists( lFile );
 
+			if( !lIsNew )
+				lFile.setWritable(true);
+				
 			// update file content
 			InputStream content = fileVersion.getContent();
 			try
@@ -204,7 +204,7 @@ public class TFSVersionsController implements VersionsController
 	}
   
 	public String runTF(String option, String file)
-	{
+	{		
 		return execute( TFSPath + "\\tf.exe " + option + " " + file );
 	}
 
