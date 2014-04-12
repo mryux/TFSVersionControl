@@ -105,9 +105,9 @@ public class TFSVersionsController implements VersionsController
 
 			addDirectory( lFile.getParentFile() );
 			
-			boolean lIsNew = !fileSystem.exists( lFile );
+			boolean lIsUpdate = fileSystem.exists( lFile );
 
-			if( !lIsNew )
+			if( lIsUpdate )
 				lFile.setWritable(true);
 				
 			// update file content
@@ -120,7 +120,7 @@ public class TFSVersionsController implements VersionsController
 			{
 				content.close();
 			}
-			runTF( lIsNew ? "add" : "checkout", lFile.getPath() );
+			runTF( lIsUpdate ? "checkout" : "add", lFile.getPath() );
 		}
 		
 		return VersionInfo.makeVersionInfo(fileVersions[0].getAuthor(), fileVersions[0].getLastModificationTime());

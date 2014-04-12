@@ -1,4 +1,3 @@
-javac -cp ../fitnesse-standalone.jar src/TfsVersionsController.java -d .
-pause
+javac -cp ../fitnesse/fitnesse-standalone.jar src/TfsVersionsController.java -d .
 
 jar cvf Tfs.jar ./fitnesse
